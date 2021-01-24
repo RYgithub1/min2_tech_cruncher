@@ -11,6 +11,12 @@ class HeadlinePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
+    /// [一発目page開いた瞬間でのデータ入手（ロード中でない&&空）]
+    final headlineViewModel = Provider.of<HeadlineViewModel>(context, listen: false);
+    if (!headlineViewModel.isLoading && headlineViewModel.articles.isEmpty){
+      // headlineViewModel.getTechViewModel(searchType: SearchType.HEADLINE);
+      Future( () => headlineViewModel.getTechViewModel(searchType: SearchType.HEADLINE) );
+    }
 
 
     return SafeArea(
