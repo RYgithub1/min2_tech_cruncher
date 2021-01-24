@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:min2_tech_cruncher/screens/pages/chat_page.dart';
-import 'package:min2_tech_cruncher/screens/pages/headline_page.dart';
-import 'package:min2_tech_cruncher/screens/pages/stock_page.dart';
-import 'package:min2_tech_cruncher/style/style.dart';
+import 'package:min2_tech_cruncher/view/screens/pages/chat_page.dart';
+import 'package:min2_tech_cruncher/view/screens/pages/headline_page.dart';
+import 'package:min2_tech_cruncher/view/screens/pages/stock_page.dart';
+import 'package:min2_tech_cruncher/view/style/style.dart';
 
 
 
@@ -35,7 +35,10 @@ class _HomeScreenState extends State<HomeScreen> {
             style: TextStyle(fontFamily: BoldFont),
           ),
           centerTitle: true,
-          actions: [const Icon(Icons.settings)],
+          actions: [
+            const Icon(Icons.settings),
+            const SizedBox(width: 8.0),
+          ],
         ),
 
         body: _bottomNavigationBarPages[_currentIndex],
