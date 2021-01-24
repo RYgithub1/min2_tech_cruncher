@@ -20,12 +20,12 @@ class Tech {
 
 @JsonSerializable()
 class Article {
-  final title;
-  @JsonKey(name: "description") final explanation;
-  final url;
-  @JsonKey(name: "urlToImage") final networkImage;
-  @JsonKey(name: "publishedAt") final publishedDate;
-  final content;
+  final String title;
+  @JsonKey(name: "description") final String explanation;
+  final String url;
+  @JsonKey(name: "urlToImage") final String networkImage;
+  @JsonKey(name: "publishedAt") final String publishedDate;
+  final String content;
 
   Article({this.title, this.explanation, this.url, this.networkImage, this.publishedDate, this.content});
 

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:min2_tech_cruncher/datasupport/search_type.dart';
 import 'package:min2_tech_cruncher/model/repository/headline_repository.dart';
+import 'package:min2_tech_cruncher/model/convert_todart/convert_todart.dart';   /// [tegaki]
 
 
 
@@ -23,6 +24,11 @@ class  HeadlineViewModel extends ChangeNotifier {
   bool get isLoading => _isLoading;
 
 
+  /// ["Repository->ViewModel/NotifyListeners()" 用に定義]
+  List<Article> _articles = [];
+  List<Article> get articles => _articles;
+
+
 
 
   /// [======== Encapsulation ========]
@@ -35,13 +41,20 @@ class  HeadlineViewModel extends ChangeNotifier {
     notifyListeners();
     print("comm202: getTechViewModel: $_searchType, $_keyword, $_isLoading");
 
-    await _headlineRepository.getTechRepository(searchType: _searchType, keyword: _keyword);
+    // await _headlineRepository.getTechRepository(searchType: _searchType, keyword: _keyword);
+    /// ["Repository->ViewModel/NotifyListeners()" 用に定義]
+    _articles = await _headlineRepository.getTechRepository(searchType: _searchType, keyword: _keyword);
 
     _isLoading = false;
     notifyListeners();
     print("comm203: getTechViewModel: $_searchType, $_keyword, $_isLoading");
-
-
   }
 
+
+
+  @override
+  void dispose() {
+    _headlineRepository.dispose();
+    super.dispose();
+  }
 }

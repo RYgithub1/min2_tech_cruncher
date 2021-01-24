@@ -21,12 +21,12 @@ Map<String, dynamic> _$TechToJson(Tech instance) => <String, dynamic>{
 
 Article _$ArticleFromJson(Map<String, dynamic> json) {
   return Article(
-    title: json['title'],
-    explanation: json['description'],
-    url: json['url'],
-    networkImage: json['urlToImage'],
-    publishedDate: json['publishedAt'],
-    content: json['content'],
+    title: json['title'] as String,
+    explanation: json['description'] as String,
+    url: json['url'] as String,
+    networkImage: json['urlToImage'] as String,
+    publishedDate: json['publishedAt'] as String,
+    content: json['content'] as String,
   );
 }
 
