@@ -31,7 +31,7 @@ class  HeadlineViewModel extends ChangeNotifier {
 
 
 
-  /// [======== Encapsulation ========]
+
   Future<void> getTechViewModel({@required SearchType searchType, String keyword}) async {
     print("comm201: getTechViewModel");
     _searchType: searchType;

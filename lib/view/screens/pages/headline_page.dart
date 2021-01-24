@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:min2_tech_cruncher/datasupport/search_type.dart';
+import 'package:min2_tech_cruncher/view/screens/components/article_tile.dart';
 import 'package:min2_tech_cruncher/view/screens/components/search_bar.dart';
 import 'package:min2_tech_cruncher/viewmodel/headline_viewmodel.dart';
 import 'package:provider/provider.dart';
+import 'package:min2_tech_cruncher/model/convert_todart/convert_todart.dart';  /// [tegaki]
 
 
 
@@ -29,7 +31,21 @@ class HeadlinePage extends StatelessWidget {
               onSearch: (keyword) => getKeywordSearch(context, keyword),
             ),
             Expanded(
-              child: Center(child: CircularProgressIndicator()),
+              child: Consumer<HeadlineViewModel>(
+                builder: (context, viewModel, child) {
+                  return viewModel.isLoading
+                    ? Center(child: CircularProgressIndicator())
+                    : ListView.builder(
+                      itemCount: viewModel.articles.length,
+                      itemBuilder: (BuildContext context, int arrayNumber) {
+                        return ArticleTile(
+                          article: viewModel.articles[arrayNumber],
+                          onArticleClick: (article) => _openArticleWebPage(article, context),
+                        );
+                      },
+                    );
+                },
+              ),
             ),
           ],
         ),
@@ -65,6 +81,13 @@ class HeadlinePage extends StatelessWidget {
     final _headlineViewModel = Provider.of<HeadlineViewModel>(context, listen: false);
     await _headlineViewModel.getTechViewModel(searchType: SearchType.KEYWORD, keyword: keyword);
     print("comm006: getKeywordSearch: ${SearchType.KEYWORD}, $keyword");
+  }
+
+
+
+
+  _openArticleWebPage(Article article, BuildContext context) {
+
   }
 
 }
