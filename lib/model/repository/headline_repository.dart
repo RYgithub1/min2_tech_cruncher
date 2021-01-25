@@ -1,8 +1,11 @@
 import 'package:chopper/chopper.dart';
 import 'package:flutter/material.dart';
 import 'package:min2_tech_cruncher/datasupport/search_type.dart';
+import 'package:min2_tech_cruncher/main.dart';
 import 'package:min2_tech_cruncher/model/api/api_service.dart';
 import 'package:min2_tech_cruncher/model/convert_todart/convert_todart.dart';   /// [tegaki]
+import 'package:min2_tech_cruncher/model/extension/extension.dart';   /// [tegaki]
+
 
 
 
@@ -10,6 +13,10 @@ class HeadlineRepository {
 
   /// [staticゆえ、CLASS.method()でcall]
   final ApiService _apiService = ApiService.create();
+  // /// [````` For ProxyProvider `````]
+  // final ApiService _apiService;
+  // final NewsDao _dao;
+  // NewsRepository({dao, apiService}) : _apiService = apiService, _dao = dao;
 
 
   /// [<void> -> <List<Article>>: api/convertToDartして取得したデータの形式と型]
@@ -35,7 +42,12 @@ class HeadlineRepository {
           final _responseBody = _response.body;
           /// [convertToDartファイルでconvert]
           _resultArticleLists = Tech.fromJson(_responseBody).articles;
-          print("comm303: [◯/◯]: ${_resultArticleLists[0].title}");
+          print("comm303_v1: [◯/◯]: ${_resultArticleLists[0].title}");
+
+          _resultArticleLists = await insertAndReadFromDB(_responseBody);
+          print("comm303_v2: [◯/◯]: ${_resultArticleLists[0].title}");
+
+
         } else {   /// [◯/x]
           final _responseError = _response.error;
           final _responseStatusCode = _response.statusCode;
@@ -53,7 +65,26 @@ class HeadlineRepository {
   }
 
 
+
+
   void dispose() {
     _apiService.dispose();
   }
+
+
+  /// [via DB section]
+  Future<List<Article>> insertAndReadFromDB(responseBody) async {
+    final _dao = myDatabase.databaseDao;
+
+    final articles = Tech.fromJson(responseBody).articles;
+
+    /// [webから取得したTechリストを、DBのテーブルクラス(Article)に変換、してDB登録]
+    final databaseTables = await _dao.insertAndReadNeawsFromDB(
+      articles.toArticleRecords(articles)
+    );
+
+    /// [DBから取得したデータを、モデルクラスに再変換、して返す]
+    return databaseTables.toArticles(databaseTables);
+  }
+
 }
