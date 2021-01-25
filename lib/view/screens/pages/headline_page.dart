@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:min2_tech_cruncher/datasupport/search_type.dart';
 import 'package:min2_tech_cruncher/view/screens/components/article_tile.dart';
 import 'package:min2_tech_cruncher/view/screens/components/search_bar.dart';
+import 'package:min2_tech_cruncher/view/screens/web_screen.dart';
 import 'package:min2_tech_cruncher/viewmodel/headline_viewmodel.dart';
 import 'package:provider/provider.dart';
 import 'package:min2_tech_cruncher/model/convert_todart/convert_todart.dart';  /// [tegaki]
@@ -92,7 +93,12 @@ class HeadlinePage extends StatelessWidget {
 
 
   _openArticleWebPage(Article article, BuildContext context) {
-
+    print("comm009: _openArticleWebPage: article.url: $article");
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => WebScreen(article: article),
+      ),
+    );
   }
 
 }
