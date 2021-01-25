@@ -51,10 +51,11 @@ class  HeadlineViewModel extends ChangeNotifier {
     // await _headlineRepository.getTechRepository(searchType: _searchType, keyword: _keyword);
     /// ["Repository->ViewModel/NotifyListeners()" 用に定義]
     _articles = await _headlineRepository.getTechRepository(searchType: _searchType, keyword: _keyword);
+    print("comm203: getTechViewModel: ${_articles[0].title}");         
 
     _isLoading = false;
     notifyListeners();
-    print("comm203: getTechViewModel: $_searchType, $_keyword, $_isLoading");
+    print("comm204: getTechViewModel: $_searchType, $_keyword, $_isLoading");
   }
 
 

@@ -29,6 +29,7 @@ class HeadlineRepository {
     /// [データ成功時の格納用]
     List<Article> _resultArticleLists = [];
 
+
     /// [response/data: ◯x-]
     try {
         switch(searchType){
@@ -56,12 +57,16 @@ class HeadlineRepository {
           print("comm305: [◯/x]: $_responseStatusCode");
         }
 
-    } catch(err) {
+    // } catch(err) {
+    } on Exception catch(err) {
       print("comm306: [x/-]: $err");
     } finally {
       print("comm307: finally");
     }
 
+    /// [If there is no keyword on the article]
+    /// [RangeError (index): Invalid value: Valid value range is empty: 0]
+    print("comm308: ${_resultArticleLists.length}");
     return _resultArticleLists;
   }
 
