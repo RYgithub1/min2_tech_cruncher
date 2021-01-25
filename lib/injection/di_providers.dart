@@ -34,9 +34,11 @@ List<SingleChildWidget> independentModels = [
 
 /// [依存するもの、apiやdbを使いたい側のクラス。ProxyProviderでDI]
 List<SingleChildWidget> dependentModels = [
-    ProxyProvider<MyDatabase, DatabaseDao>(   /// [for Dao]
+    /// [MyDatabase <- DatabaseDaoが使いたい]
+    ProxyProvider<MyDatabase, DatabaseDao>(
       update: (_, db, dao) => DatabaseDao(db),
     ),
+    /// [DatabaseDaoとApiService <- HeadlineRepositoryが使いたい]
     ProxyProvider2<DatabaseDao, ApiService, HeadlineRepository>(
       update: (_, dao, apiService, repository) => HeadlineRepository(dao: dao, apiService: apiService),
     ),
@@ -51,7 +53,7 @@ List<SingleChildWidget> viewModels = [
     ChangeNotifierProvider<HeadlineViewModel>(
       create: (context) => HeadlineViewModel(
         /// [NewsListViewModel({})でデータをpassしているのでnamed_parameterへconvert]
-        /// [DI向けのnamedParaゆえ<TA>=<NewsRepository>]
+        /// [DI向けのnamedParaゆえ<TA>=<HeadlineRepository>]
         headlineRepository: Provider.of<HeadlineRepository>(context, listen: false),
       ),
     ),

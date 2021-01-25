@@ -93,7 +93,7 @@ class HeadlinePage extends StatelessWidget {
 
 
   _openArticleWebPage(Article article, BuildContext context) {
-    print("comm009: _openArticleWebPage: article.url: $article");
+    print("comm009: _openArticleWebPage: article.url: ${article.url}");
     Navigator.of(context).push(
       MaterialPageRoute(
         builder: (context) => WebScreen(article: article),

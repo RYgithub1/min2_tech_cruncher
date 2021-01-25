@@ -7,7 +7,7 @@ import 'package:webview_flutter/webview_flutter.dart';  /// [tegaki]
 class WebScreen extends StatelessWidget {
 
   final Article article;
-  const WebScreen({this.article});
+  const WebScreen({@required this.article});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,8 @@ class WebScreen extends StatelessWidget {
           centerTitle: true,
         ),
         body: WebView(
-          initialUrl: article.networkImage,
+          /// initialUrl: article.networkImage,   /// [Need Url for webView]
+          initialUrl: article.url,
           javascriptMode: JavascriptMode.unrestricted,
         ),
       ),
