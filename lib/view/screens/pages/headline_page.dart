@@ -71,16 +71,21 @@ class HeadlinePage extends StatelessWidget {
     print("comm001: onRefreshContent");
     final _headlineViewModel = Provider.of<HeadlineViewModel>(context, listen: false);
     /// [現在の検索条件でのrefresh]
-    await _headlineViewModel.getTechViewModel(searchType: _headlineViewModel.searchType, keyword: _headlineViewModel.keyword);
-    print("comm002: getKeywordSearch: ${_headlineViewModel.searchType}, ${_headlineViewModel.keyword}");
+    // await _headlineViewModel.getTechViewModel(searchType: _headlineViewModel.searchType, keyword: _headlineViewModel.keyword);
+    await _headlineViewModel.getTechViewModel(searchType: _headlineViewModel.searchType);
+    print("comm002: onRefreshContent: ${_headlineViewModel.searchType}, ${_headlineViewModel.keyword}");
 
   }
 
-  Future<void> getKeywordSearch(BuildContext context, keyword) async {
+  Future<void> getKeywordSearch(BuildContext context, keywordDa) async {
     print("comm005: getKeywordSearch");
+    print("comm006: getKeywordSearch: $keywordDa");
     final _headlineViewModel = Provider.of<HeadlineViewModel>(context, listen: false);
-    await _headlineViewModel.getTechViewModel(searchType: SearchType.KEYWORD, keyword: keyword);
-    print("comm006: getKeywordSearch: ${SearchType.KEYWORD}, $keyword");
+    await _headlineViewModel.getTechViewModel(
+        searchType: SearchType.KEYWORD,
+        keyword: keywordDa,
+    );
+    // print("comm007: getKeywordSearch: $searchType");
   }
 
 

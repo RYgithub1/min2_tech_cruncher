@@ -33,9 +33,12 @@ class  HeadlineViewModel extends ChangeNotifier {
 
 
   Future<void> getTechViewModel({@required SearchType searchType, String keyword}) async {
-    print("comm201: getTechViewModel");
-    _searchType: searchType;
-    _keyword: keyword;
+    print("comm201: getTechViewModel: $searchType, $keyword, $_isLoading");
+    // _searchType: searchType;
+    // _keyword: keyword;
+    /// [The label '_searchType' isn't used. Try removing the label, or]
+    _searchType = searchType;
+    _keyword = keyword;
 
     _isLoading = true;
     notifyListeners();

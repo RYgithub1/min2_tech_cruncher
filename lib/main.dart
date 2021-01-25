@@ -8,8 +8,12 @@ import 'package:provider/provider.dart';
 
 void main() {
   runApp(
-    ChangeNotifierProvider<HeadlineViewModel>(
-      create: (context) => HeadlineViewModel(),
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider<HeadlineViewModel>(
+          create: (context) => HeadlineViewModel(),
+        ),
+      ],
       child: MyApp(),
     ),
   );
