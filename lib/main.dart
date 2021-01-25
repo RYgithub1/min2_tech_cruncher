@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:min2_tech_cruncher/injection/di_providers.dart';
 import 'package:min2_tech_cruncher/view/screens/home_screen.dart';
 import 'package:min2_tech_cruncher/view/style/style.dart';
 import 'package:min2_tech_cruncher/viewmodel/headline_viewmodel.dart';
@@ -7,18 +8,22 @@ import 'package:min2_tech_cruncher/model/database/database_table.dart';  /// [te
 
 
 
-MyDatabase myDatabase;
+// MyDatabase myDatabase;
+/// [````` For ProxyProvider `````]
+
 
 void main() {
-  myDatabase = MyDatabase();
+  // myDatabase = MyDatabase();
+  /// [````` For ProxyProvider `````]
 
   runApp(
     MultiProvider(
-      providers: [
-        ChangeNotifierProvider<HeadlineViewModel>(
-          create: (context) => HeadlineViewModel(),
-        ),
-      ],
+      // providers: [
+      //   ChangeNotifierProvider<HeadlineViewModel>(
+      //     create: (context) => HeadlineViewModel(),
+      //   ),
+      // ],
+      providers: globalProviders,
       child: MyApp(),
     ),
   );

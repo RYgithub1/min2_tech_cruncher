@@ -4,6 +4,7 @@ import 'package:min2_tech_cruncher/datasupport/search_type.dart';
 import 'package:min2_tech_cruncher/main.dart';
 import 'package:min2_tech_cruncher/model/api/api_service.dart';
 import 'package:min2_tech_cruncher/model/convert_todart/convert_todart.dart';   /// [tegaki]
+import 'package:min2_tech_cruncher/model/database/database_dao.dart';
 import 'package:min2_tech_cruncher/model/extension/extension.dart';   /// [tegaki]
 
 
@@ -12,11 +13,11 @@ import 'package:min2_tech_cruncher/model/extension/extension.dart';   /// [tegak
 class HeadlineRepository {
 
   /// [staticゆえ、CLASS.method()でcall]
-  final ApiService _apiService = ApiService.create();
-  // /// [````` For ProxyProvider `````]
-  // final ApiService _apiService;
-  // final NewsDao _dao;
-  // NewsRepository({dao, apiService}) : _apiService = apiService, _dao = dao;
+  // final ApiService _apiService = ApiService.create();
+  /// [````` For ProxyProvider `````]
+  final ApiService _apiService;
+  final DatabaseDao _dao;
+  HeadlineRepository({dao, apiService}) : _apiService = apiService, _dao = dao;
 
 
   /// [<void> -> <List<Article>>: api/convertToDartして取得したデータの形式と型]
@@ -74,7 +75,9 @@ class HeadlineRepository {
 
   /// [via DB section]
   Future<List<Article>> insertAndReadFromDB(responseBody) async {
-    final _dao = myDatabase.databaseDao;
+    // final _dao = myDatabase.databaseDao;
+  /// [````` For ProxyProvider `````]
+
 
     final articles = Tech.fromJson(responseBody).articles;
 

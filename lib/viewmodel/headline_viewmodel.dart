@@ -7,7 +7,11 @@ import 'package:min2_tech_cruncher/model/convert_todart/convert_todart.dart';   
 
 class  HeadlineViewModel extends ChangeNotifier {
 
-  final HeadlineRepository _headlineRepository = HeadlineRepository();
+  // final HeadlineRepository _headlineRepository = HeadlineRepository();
+  /// [````` For ProxyProvider `````]
+  final HeadlineRepository _headlineRepository;
+  HeadlineViewModel({headlineRepository}) : _headlineRepository = headlineRepository;
+
 
 
   /// [======== Encapsulation ========]
