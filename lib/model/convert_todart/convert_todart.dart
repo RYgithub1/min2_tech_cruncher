@@ -1,4 +1,4 @@
-/// [ApiからHttp通信(Chopper)でデータ取得 -> Json(Map形式)をDart形式に変換]
+/// [ApiからHttp通信(Chopper)でデータ取得 -> Json形式 -> Map形式 -> Dart形式へ変換]
 
 
 import 'package:json_annotation/json_annotation.dart';
@@ -13,6 +13,7 @@ class Tech {
   final List<Article> articles;
   Tech({this.articles});
 
+  /// [Map<String, dynamic>: key-valueのBuildInType]
   factory Tech.fromJson(Map<String, dynamic> json) => _$TechFromJson(json);
   Map<String, dynamic> toJson() => _$TechToJson(this);
 }

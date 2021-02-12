@@ -29,6 +29,7 @@ class  HeadlineViewModel extends ChangeNotifier {
 
 
   /// ["Repository->ViewModel/NotifyListeners()" 用に定義]
+  /// [APIから、Json->Dart変換後、List<Article>型ゆえ: Repositoryで受ける -> VMで受ける]
   List<Article> _articles = [];
   List<Article> get articles => _articles;
 
@@ -41,6 +42,7 @@ class  HeadlineViewModel extends ChangeNotifier {
     // _searchType: searchType;
     // _keyword: keyword;
     /// [The label '_searchType' isn't used. Try removing the label, or]
+    /// [+==== onRefresh()の場合に、現行の情報を元に検索させるために、データを持っておく必要があるため、カプセル化したプロパティに代入しておく =====]
     _searchType = searchType;
     _keyword = keyword;
 

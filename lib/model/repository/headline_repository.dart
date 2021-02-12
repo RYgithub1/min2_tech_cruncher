@@ -21,6 +21,7 @@ class HeadlineRepository {
 
 
   /// [<void> -> <List<Article>>: api/convertToDartして取得したデータの形式と型]
+  /// [APIから、Json->Dart変換後、List<Article>型ゆえ: Repositoryで受ける]
   Future<List<Article>> getTechRepository({@required SearchType searchType, String keyword}) async {
     print("comm301: getTechRepository: $searchType, $keyword");
 

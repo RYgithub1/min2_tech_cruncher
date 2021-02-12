@@ -21,6 +21,7 @@ void main() {
       // providers: [
       //   ChangeNotifierProvider<HeadlineViewModel>(
       //     create: (context) => HeadlineViewModel(),
+      ///     create: (_) => HeadlineViewModel(),  /// [(引数)でcontext使わないなら_dynamicでよい]
       //   ),
       // ],
       providers: globalProviders,
